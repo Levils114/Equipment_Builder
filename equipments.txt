@@ -1,0 +1,17 @@
+[
+Equipament: {
+Name: askdnaskd, 
+Model: aksldnaskd, 
+Company: asdkasndlkda, 
+Price: 12.0, 
+Created At: 2020-07-14 04:14:55.198009
+}
+, 
+Equipament: {
+Name: asdkasndaksdn, 
+Model: asdnaskd, 
+Company: askdnaskd, 
+Price: 123123.0, 
+Created At: 2020-07-14 04:15:00.048420
+}
+]
