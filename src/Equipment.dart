@@ -1,12 +1,16 @@
 import 'dart:io';
 import 'dart:core';
+import 'dart:async';
+import 'dart:convert';
+import 'package:uuid/uuid.dart';
 
 class Equipment{
 
 	var file = new File('equipments.txt');
 
-	var equipmentList = [];
+	List<String> equipmentList = [];
 
+	String id;
 	String name;
 	String model;
 	String company;
@@ -14,6 +18,8 @@ class Equipment{
 	var created_at;
 
 	create(){
+		var uuid = new Uuid();
+
 		print('\nName: ');
 	    String name = stdin.readLineSync();
 
@@ -26,18 +32,42 @@ class Equipment{
 	    print('\nPrice: ');
 	    double price = double.tryParse(stdin.readLineSync()) ?? 0;
 
+	    this.id = uuid.v4();
 	  	this.name = name;
 	  	this.model = model;
 	  	this.company = company;
 	  	this.price = price;
 	  	this.created_at = DateTime.now();
 
-	  	equipmentList.add('\nEquipament: {\nName: $name, \nModel: $model, \nCompany: $company, \nPrice: $price, \nCreated At: $created_at\n}\n' );
+	  	file.readAsString().then((String contents) {
+			equipmentList.add('$contents');
+		});
 
-	  	file.writeAsString('$equipmentList');
+	  	equipmentList.add('\nEquipament: {\nID: $id,\nName: $name, \nModel: $model, \nCompany: $company, \nPrice: $price, \nCreated At: $created_at\n}\n' );
+
+	  	file.readAsString().then((String contents) {
+			file.writeAsString('$equipmentList');
+		});
+	  	
+	}
+		
+	imprimir(){
+		return print("\nYou create the following equipment: \n Name: $name \n Model: $model \n Company: $company \n Price: $price \n Created At: $created_at");
+		
 	}
 
-	restart(){
+	listEquipments(){
+		return file.readAsString().then((String contents){
+			print(contents);
+			});
+	}
+
+	/*edit(String id){
+		equipmentList.
+	}*/
+
+
+	/*restart(){
 		print('\nDo you want go to menu? y/N');
 	    String opcao = stdin.readLineSync();
 
@@ -76,16 +106,7 @@ class Equipment{
 	    } else{
 	    	print('Please, type a valid option');
 	    }
-	}
-		
-	imprimir(){
-		print("\nYou create the following equipment: \n Name: $name \n Model: $model \n Company: $company \n Price: $price \n Created At: $created_at");
-		
-	}
-
-	listEquipments(){
-		print(equipmentList);
-	}
+	}	*/
 
 
 }

@@ -1,0 +1,5 @@
+name: Desafio01_Paguru
+dependencies:
+  js: ^0.6.0
+  intl: ^0.15.8
+  uuid: ^2.2.0
