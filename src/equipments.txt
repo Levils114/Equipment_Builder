@@ -1,28 +1,22 @@
 [
-Equipament: {
-ID: 4070031e-2cb6-4d41-b2fb-15e579dec790,
-Name: asdas, 
-Model: dasd, 
-Company: asdasd, 
-Price: 12321.0, 
-Created At: 2020-07-15 05:22:58.870338
-}
+Equipment: 
+Name: askdansd
+Model: aksdnaskd 
+Company: sadksand 
+Price: 12.0 
+Created At: 16/07/2020
 , [
-Equipament: {
-ID: e57805a7-df87-44c6-9d84-9f29a358c87f,
-Name: Logan, 
-Model: 2020, 
-Company: Renault, 
-Price: 20000.0, 
-Created At: 2020-07-15 05:18:27.453191
-}
+Equipment: 
+Name: Levi
+Model: Pedala 
+Company: Neymar 
+Price: 12.0 
+Created At: 16-07-2020
 , [
-Equipament: {
-ID: 560e99b9-ac1e-4d52-85da-4313fd8ce568,
-Name: Corolla, 
-Model: 2020, 
-Company: Toyota, 
-Price: 30000.0, 
-Created At: 2020-07-15 05:17:59.975516
-}
+Equipment: 
+
+ 
+ 
+ 
+
 , ]]]

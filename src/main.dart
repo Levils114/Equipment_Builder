@@ -31,8 +31,15 @@ void main(List<String> arguments) {
       equipment.listEquipments();
 
   	 } else if(opcao == "3"){
+      var equipment = Equipment();
+
+      equipment.edit();
 
      } else if(opcao == "4"){
+
+      var equipment = Equipment();
+
+      equipment.remove();
 
      } else {
       print('\nPlease, type a valid option');

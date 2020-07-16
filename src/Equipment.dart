@@ -3,6 +3,7 @@ import 'dart:core';
 import 'dart:async';
 import 'dart:convert';
 import 'package:uuid/uuid.dart';
+import 'package:intl/intl.dart';
 
 class Equipment{
 
@@ -10,7 +11,7 @@ class Equipment{
 
 	List<String> equipmentList = [];
 
-	String id;
+	/*String id;*/
 	String name;
 	String model;
 	String company;
@@ -31,19 +32,24 @@ class Equipment{
 
 	    print('\nPrice: ');
 	    double price = double.tryParse(stdin.readLineSync()) ?? 0;
+	    
+	    /*this.id = uuid.v4();*/
+		this.name = name;
+		this.model = model;
+		this.company = company;
+		this.price = price;
 
-	    this.id = uuid.v4();
-	  	this.name = name;
-	  	this.model = model;
-	  	this.company = company;
-	  	this.price = price;
-	  	this.created_at = DateTime.now();
-
+		/*this.created_at = DateTime.now();*/
+		final DateTime now = DateTime.now();
+		final DateFormat formatter = DateFormat('dd/MM/yyyy');
+		final String created_at = formatter.format(now);
+	    
+	    
 	  	file.readAsString().then((String contents) {
 			equipmentList.add('$contents');
 		});
 
-	  	equipmentList.add('\nEquipament: {\nID: $id,\nName: $name, \nModel: $model, \nCompany: $company, \nPrice: $price, \nCreated At: $created_at\n}\n' );
+	  	equipmentList.add('\nEquipment: \nName: $name\nModel: $model \nCompany: $company \nPrice: $price \nCreated At: $created_at\n');
 
 	  	file.readAsString().then((String contents) {
 			file.writeAsString('$equipmentList');
@@ -52,7 +58,7 @@ class Equipment{
 	}
 		
 	imprimir(){
-		return print("\nYou create the following equipment: \n Name: $name \n Model: $model \n Company: $company \n Price: $price \n Created At: $created_at");
+		return print("\nYou create the following equipment: \n Name: $name \n Model: $model \n Company: $company \n Price: $price");
 		
 	}
 
@@ -62,51 +68,141 @@ class Equipment{
 			});
 	}
 
-	/*edit(String id){
-		equipmentList.
-	}*/
+	edit(){
 
+		file.readAsString().then((String contents) {
 
-	/*restart(){
-		print('\nDo you want go to menu? y/N');
-	    String opcao = stdin.readLineSync();
+			print('\nWhat value of your equipment you want change([n]name, [m]model, [c]company, [p]price)?: ');
+			String option = stdin.readLineSync();
 
-	    if(opcao == "y"){
-	      print('+--------------------------------------------+');
-		  print('|                                            |');
-		  print('|    Choose some option:                     |');
-		  print('|                                            |');
-		  print('|    1 - Create a new equipment              |');
-		  print('|    2 - List created equipments             |');
-		  print('|                                            |');
-		  print('+--------------------------------------------+\n');
+			if (option == 'n'){
+				print('\nPut the name of equipment you want edit: ');
+		    	String name = stdin.readLineSync();
 
+		    	print('\nPut the new name: ');
+		    	String newName = stdin.readLineSync();
 
-		  print('Opção: ');
-		  String opcao = stdin.readLineSync();
+		    	final changedName = contents.replaceAll(name, newName);
+		    	final newContent = contents.replaceAll(contents, changedName);
 
-		  if(opcao == "1"){
+		    	file.writeAsString('$newContent');
 
-		  	create();
-		    
-		    imprimir();
+		    	print('\nNow, you change your equipment, this is it with the new values:');
+				return print('\nEquipment edited: \n Name: $newName');
 
-		    restart();
+			} else if(option == 'm'){
+				print('\nPut the model of equipment you want edit: ');
+		    	String model = stdin.readLineSync();
 
-		  	} else if(opcao == "2"){
-		  		listEquipments();
+		    	print('\nPut the new model: ');
+		    	String newModel = stdin.readLineSync();
 
-		  		restart();
-		  	} else {
-		  		print('Please, type a valid option');
-		  	}
+		    	final changedModel = contents.replaceAll(model, newModel);
+		    	final newContent = contents.replaceAll(contents, changedModel);
 
-	    } else if(opcao == "N"){
-	    	return;
-	    } else{
-	    	print('Please, type a valid option');
-	    }
-	}	*/
+		    	file.writeAsString('$newContent');
 
+		    	print('\nNow, you change your equipment, this is it with the new values:');
+				return print('\nEquipment edited: \n Model: $newModel');
+			} else if(option == 'c'){
 
+				print('\nPut the company of equipment you want edit: ');
+		    	String company = stdin.readLineSync();
+
+		    	print('\nPut the new company: ');
+		    	String newCompany= stdin.readLineSync();
+
+		    	final changedCompany = contents.replaceAll(company, newCompany);
+		    	final newContent = contents.replaceAll(contents, changedCompany);
+
+		    	file.writeAsString('$newContent');
+
+		    	print('\nNow, you change your equipment, this is it with the new values:');
+				return print('\nEquipment edited: \n Company: $newCompany');
+
+			} else if(option == 'p'){
+				print('\nPut the price of equipment you want edit: ');
+		    	String price = stdin.readLineSync();
+
+		    	print('\nPut the new price: ');
+		    	String newPrice= stdin.readLineSync();
+
+		    	final changedPrice = contents.replaceAll(price, newPrice);
+		    	final newContent = contents.replaceAll(contents, changedPrice);
+
+		    	file.writeAsString('$newContent');
+
+		    	print('\nNow, you change your equipment, this is it with the new values:');
+				return print('\nEquipment edited: \n Price: $newPrice');
+			} else{
+				print('Please, put a valid option');
+			}
+		});
+	}
+
+	remove(){
+		file.readAsString().then((String contents) {
+			/*equipmentList.add('$contents');*/
+
+			print('\nWhat value of your equipment you want remove([n]name, [m]model, [c]company, [p]price, [ca]created_at)?: ');
+			String option = stdin.readLineSync();
+
+			if (option == 'n'){
+				print('\nPut the name of equipment you want remove: ');
+		    	String name = stdin.readLineSync();
+
+		    	final changedName = contents.replaceAll('Name: $name', '');
+		    	final newContent = contents.replaceAll(contents, changedName);
+
+		    	file.writeAsString('$newContent');
+
+		    	print('\nThe name $name, was removed.');
+
+			} else if(option == 'm'){
+				print('\nPut the model of equipment you want remove: ');
+		    	String model = stdin.readLineSync();
+
+		    	final changedModel = contents.replaceAll('Model: $model', '');
+		    	final newContent = contents.replaceAll(contents, changedModel);
+
+		    	file.writeAsString('$newContent');
+
+		    	print('\nThe model $model, was removed.');
+			} else if(option == 'c'){
+
+				print('\nPut the company of equipment you want remove: ');
+		    	String company = stdin.readLineSync();
+
+		    	final changedCompany = contents.replaceAll('Company: $company', '');
+		    	final newContent = contents.replaceAll(contents, changedCompany);
+
+		    	file.writeAsString('$newContent');
+
+		    	print('\nThe company $company, was removed.');
+
+			} else if(option == 'p'){
+				print('\nPut the price of equipment you want remove: ');
+		    	String price = stdin.readLineSync();
+
+		    	final changedPrice = contents.replaceAll('Price: $price.0', '');
+		    	final newContent = contents.replaceAll(contents, changedPrice);
+
+		    	file.writeAsString('$newContent');
+
+		    	print('\nThe price $price, was removed.');
+			} else if(option == 'ca'){
+				print('\nPut the created at of equipment you want remove(dd/MM/yyy): ');
+		    	String created_at = stdin.readLineSync();
+
+		    	final changedCreatedAt = contents.replaceAll('Created At: $created_at', '');
+		    	final newContent = contents.replaceAll(contents, changedCreatedAt);
+
+		    	file.writeAsString('$newContent');
+
+		    	print('\nThe Created at $created_at, was removed.');
+			} else{
+				print('Please, put a valid option');
+			}
+		});
+	}
 }
