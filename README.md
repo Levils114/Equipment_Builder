@@ -3,7 +3,13 @@
 **🔎 Introdução:** 
   
   Esse repositório é destinado a resolução do primeiro desafio feito no MeetUp da empresa Paguru.  
-  O desafio consistia na criação de uma aplicação onde o usuário poderia criar um equipamento com os atributos:  nome,  modelo,  marca,  preço,  data de criação. 
+  O desafio consistia na criação de uma aplicação onde o usuário poderia criar um equipamento com os atributos: 
+  nome,  
+  modelo,  
+  marca,  
+  preço,  
+  data de criação.  
+  
   O usuário também teria como funcionalidade, a listagem de equipamentos criados. 
     
   Observação: os equipamentos deveriam ser armazenados em um arquivo .txt
