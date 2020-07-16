@@ -3,7 +3,7 @@
 **🔎 Introdução:** 
   
   Esse repositório é destinado a resolução do primeiro desafio feito no MeetUp da empresa Paguru.  
-  O desafio consistia na criação de uma aplicação onde o usuário poderia criar um equipamento com os atributos: 
+  O desafio consistia na criação de uma aplicação onde o usuário poderia criar um equipamento com os atributos:  
   nome,  
   modelo,  
   marca,  
